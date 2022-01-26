@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Series{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+    <header>
+        {% include('inc/nav.html.twig') %}
+    </header>
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+    <footer>
+        {% include('inc/nav.html.twig') %}
+        &copy; ENI {{ date() | date("Y") }}
+    </footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head></head>
+<body>
+<h1>Hello world Twig!</h1>
+{# VARIABLES #}
+{% set bonjour = 'hello les HCDA2012<script>document.location.href="http://www.eni-ecole.fr";</script>' %}
+{# affichage de la valeur d'une variable #}
+<p>{{ bonjour }}</p>
+
+{# BOUCLES #}
+{% set colors=['red', 'blue', 'green'] %}
+<ul>
+    {% for color in colors %}
+        <li>{{ color | upper }}</li>
+    {% endfor %}
+</ul>
+<p>{{ colors | length }}</p>
+
+{# CONDITIONNELLES #}
+{% if bonjour == 'hello' %}
+<p>C'est hello qu'il y a dans la variable bonjour</p>
+{% else %}
+<p>Ce n'est pas hello qu'il y a dans la variable bonjour</p>
+{% endif %}
+
+{# FORMATTAGE NOMBRES #}
+{% set num = 123456789.987654321 %}
+<p>bla bla bla bla bla {{ num | number_format(5, ',', '&nbsp;') | raw }}</p>
+</body>
+</html>

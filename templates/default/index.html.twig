@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello - {{ parent() }}{% endblock %}
+
+{% block main %}
+    <h1>{{ h1 }}</h1>
+    Welcome to Series' website !
+    {% for i, s in series %}
+        {{ loop.index }} -> {{ i }} -> {{ s }}
+    {% endfor %}
+{% endblock %}
