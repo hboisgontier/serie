@@ -3,6 +3,6 @@
 {% block title %}Detail - {{ parent() }}{% endblock %}
 
 {% block main %}
-    <h1>Serie title {{ id }}</h1>
-    <p>Synopsis Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium eius fugiat hic neque obcaecati porro, qui quisquam reprehenderit rerum veniam? Atque autem libero magnam nostrum quis quod repudiandae tempora vel.</p>
+    <h1>{{ serie.name }}</h1>
+    <p>{{ serie.overview }}</p>
 {% endblock %}

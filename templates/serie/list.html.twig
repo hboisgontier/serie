@@ -2,4 +2,11 @@
 
 {% block title %}List - {{ parent() }}{% endblock %}
 
-{% block main %}<h1>Our series</h1>{% endblock %}
+{% block main %}
+    <h1>Our series</h1>
+    <ul>
+        {% for s in series %}
+            <li><a href="{{ path('serie_detail', {'id':s.id}) }}">{{ s.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
