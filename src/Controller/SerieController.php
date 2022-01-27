@@ -46,7 +46,7 @@ class SerieController extends AbstractController
         $formbuilder = $this->createForm(SerieType::class, $serie);
         // hydrate l'instance avec les données du formulaire
         $formbuilder->handleRequest($request);
-        if($formbuilder->isSubmitted()) {
+        if($formbuilder->isSubmitted() && $formbuilder->isValid()) {
             $em->persist($serie);
             $em->flush();
             // ajout d'un message flash
