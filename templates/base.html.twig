@@ -10,6 +10,14 @@
         {% include('inc/nav.html.twig') %}
     </header>
     <main>
+        {# affichage des messages flash #}
+        {% for category, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash flash-{{ category }}">
+                    <strong>{{ category }}</strong> : {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
         {% block main %}{% endblock %}
     </main>
     <footer>

@@ -5,5 +5,9 @@ Add a new serie
 {% endblock %}
 
 {% block main %}
-<h1>Add</h1>
+<h1>Add a new serie</h1>
+    {{ form_start(serieform) }}
+    {{ form_widget(serieform) }}
+    <input type="submit" value="Send!">
+    {{ form_end(serieform) }}
 {% endblock %}

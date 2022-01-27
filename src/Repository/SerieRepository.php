@@ -19,32 +19,18 @@ class SerieRepository extends ServiceEntityRepository
         parent::__construct($registry, Serie::class);
     }
 
-    // /**
-    //  * @return Serie[] Returns an array of Serie objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Serie
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+    public function findGoodSeries() {
+        /*DQL
+        $em = $this->getEntityManager();
+        $dql = 'SELECT s
+                FROM App\Entity\Serie s
+                WHERE s.vote >= 8.5
+                ORDER BY s.vote DESC';
+        $query =$em->createQuery($dql);*/
+        //QueryBuilder
+        $qb = $this->createQueryBuilder('s');
+        $qb->andWhere('s.vote >= 8.5')->addOrderBy('s.vote', 'DESC');
+        $query = $qb->getQuery();
+        return $query->getResult();
+        }
 }

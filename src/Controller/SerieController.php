@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Serie;
+use App\Form\SerieType;
 use App\Repository\SerieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,6 +20,13 @@ class SerieController extends AbstractController
     {
         $series = $repo->findAll();
         //$series =$repo->findBy([], ['vote'=>'DESC']);
+        //$series = $repo->findBy(['vote'=>8]);
+        return $this->render('serie/list.html.twig', ['series'=>$series]);
+    }
+
+    #[Route('/serie/good', name: 'serie_good')]
+    public function good(SerieRepository $repo): Response {
+        $series = $repo->findGoodSeries();
         return $this->render('serie/list.html.twig', ['series'=>$series]);
     }
 
@@ -32,18 +40,23 @@ class SerieController extends AbstractController
     }
 
     #[Route('/serie/add', name: 'serie_add')]
-    public function add(EntityManagerInterface $em): Response {
+    public function add(EntityManagerInterface $em, Request $request): Response {
         $serie = new Serie();
-        $serie->setName('test serie')
-                ->setTmdbId(854)
-                ->setDateCreated(new \DateTime());
-        $em->persist($serie);
-        $em->flush();
-        $serie->setOverview('bla bla...');
-        $serie->setDateModified(new \DateTime());
-        $em->flush();
-        $em->remove($serie);
-        $em->flush();
-        return $this->render('serie/add.html.twig');
+        $serie->setDateCreated(new \DateTime());
+        $formbuilder = $this->createForm(SerieType::class, $serie);
+        // hydrate l'instance avec les données du formulaire
+        $formbuilder->handleRequest($request);
+        if($formbuilder->isSubmitted()) {
+            $em->persist($serie);
+            $em->flush();
+            // ajout d'un message flash
+            $serieName = $serie->getName();
+            $this->addFlash('success', "the serie $serieName has been saved");
+            // redirection vers une page de simple consutltation pour ne pas refaire
+            // le traitement si l'utilisateur actualise la page
+            return $this->redirectToRoute('serie_detail', ['id'=>$serie->getId()]);
+        }
+        $serieform = $formbuilder->createView();
+        return $this->render('serie/add.html.twig', ['serieform'=>$serieform]);
     }
 }

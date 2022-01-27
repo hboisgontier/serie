@@ -202,6 +202,9 @@
             "./.env"
         ]
     },
+    "symfony/form": {
+        "version": "v5.4.2"
+    },
     "symfony/framework-bundle": {
         "version": "5.4",
         "recipe": {
@@ -254,7 +257,13 @@
             "./config/packages/test/monolog.yaml"
         ]
     },
+    "symfony/options-resolver": {
+        "version": "v5.4.0"
+    },
     "symfony/polyfill-intl-grapheme": {
+        "version": "v1.24.0"
+    },
+    "symfony/polyfill-intl-icu": {
         "version": "v1.24.0"
     },
     "symfony/polyfill-intl-normalizer": {
@@ -271,6 +280,12 @@
     },
     "symfony/polyfill-php81": {
         "version": "v1.24.0"
+    },
+    "symfony/property-access": {
+        "version": "v5.4.2"
+    },
+    "symfony/property-info": {
+        "version": "v5.4.2"
     },
     "symfony/proxy-manager-bridge": {
         "version": "v5.4.2"
