@@ -33,4 +33,15 @@ class SerieRepository extends ServiceEntityRepository
         $query = $qb->getQuery();
         return $query->getResult();
         }
+
+        public function findWithSeasons($limit) {
+            $qb = $this->createQueryBuilder('serie')
+                ->join('serie.seasons', 'seasons')
+                ->addSelect('seasons')
+                ->setMaxResults($limit)
+            ;
+            $query = $qb->getQuery();
+            //return $query->getResult();
+            return new Paginator($query);
+        }
 }

@@ -6,7 +6,9 @@
     <h1>Our series</h1>
     <ul>
         {% for s in series %}
-            <li><a href="{{ path('serie_detail', {'id':s.id}) }}">{{ s.name }}</a></li>
+            {% set nbSeasons = s.seasons.count() %}
+            <li><a href="{{ path('serie_detail', {'id':s.id}) }}">{{ s.name }}
+                    ({{ nbSeasons }} season{{ nbSeasons>=2?'s':'' }})</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

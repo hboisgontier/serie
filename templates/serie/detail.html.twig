@@ -6,4 +6,9 @@
     <h1>{{ serie.name }}</h1>
     <p>{{ serie.overview }}</p>
     <p>note : {{ serie.vote }}</p>
+    <h2>Seasons</h2>
+    {% for season in serie.seasons %}
+        <h3>Season #{{ season.number }}</h3>
+        <p>{{ season.overview }}</p>
+    {% endfor %}
 {% endblock %}
