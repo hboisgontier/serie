@@ -60,4 +60,13 @@ class SerieController extends AbstractController
         $serieform = $formbuilder->createView();
         return $this->render('serie/add.html.twig', ['serieform'=>$serieform]);
     }
+
+    #[Route('/serie/delete/{id}', name:'serie_delete', requirements:['id'=>'\d+'], methods:['POST'])]
+    public function delete($id, SerieRepository $serieRepository, EntityManagerInterface $em): Response {
+        $serie = $serieRepository->find($id);
+        $em->remove($serie);
+        $em->flush();
+        $this->addFlash('success', 'The serie has been removed!');
+        return $this->redirectToRoute('serie_list');
+    }
 }

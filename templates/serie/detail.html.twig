@@ -4,6 +4,9 @@
 
 {% block main %}
     <h1>{{ serie.name }}</h1>
+    <form action="{{ path('serie_delete', {'id':serie.id}) }}" method="POST">
+        <input type="submit" value="Delete this serie">
+    </form>
     <p>{{ serie.overview }}</p>
     <p>note : {{ serie.vote }}</p>
     <h2>Seasons</h2>
