@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Serie;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -19,7 +20,7 @@ class SerieType extends AbstractType
             ->add('vote')
             ->add('popularity')
             ->add('genres')
-            ->add('firstAirDate')
+            ->add('firstAirDate', DateType::class, ['widget' => 'single_text'])
             ->add('lastAirDate')
             ->add('backdrop')
             ->add('poster')

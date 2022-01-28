@@ -260,6 +260,9 @@
     "symfony/options-resolver": {
         "version": "v5.4.0"
     },
+    "symfony/password-hasher": {
+        "version": "v5.4.2"
+    },
     "symfony/polyfill-intl-grapheme": {
         "version": "v1.24.0"
     },
@@ -305,6 +308,12 @@
     },
     "symfony/runtime": {
         "version": "v5.4.1"
+    },
+    "symfony/security-core": {
+        "version": "v5.4.2"
+    },
+    "symfony/security-csrf": {
+        "version": "v5.4.0"
     },
     "symfony/service-contracts": {
         "version": "v2.4.1"
