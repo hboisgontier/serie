@@ -3,5 +3,11 @@
         <li><a href="{{ path('default') }}">Default</a></li>
         <li><a href="{{ path('serie_list') }}">Index</a></li>
         <li><a href="{{ path('hello_index') }}">Hello world!</a></li>
+        {% if app.user %}
+            <li><a href="{{ path('app_logout') }}">Logout</a></li>
+        {% else %}
+            <li><a href="{{ path('app_login') }}">Login</a></li>
+            <li><a href="{{ path('app_register') }}">Register</a></li>
+        {% endif %}
     </ul>
 </nav>

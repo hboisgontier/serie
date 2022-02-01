@@ -23,7 +23,7 @@ class DefaultController extends AbstractController
     public function index() : Response {
         $h1 = 'Index';
         $series = ['Lupin'];
-        return $this->render('default/list.html.twig',
+        return $this->render('default/index.html.twig',
             compact("h1", "series"));
     }
 }
