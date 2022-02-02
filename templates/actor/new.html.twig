@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Actor{% endblock %}
+
+{% block main %}
+    <h1>Create new Actor</h1>
+
+    {{ include('actor/_form.html.twig') }}
+
+    <a href="{{ path('actor_index') }}">back to list</a>
+{% endblock %}
