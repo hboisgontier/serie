@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Serie;
 use App\Form\SerieType;
 use App\Repository\SerieRepository;
+use App\Verif\TestChaine;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,13 +42,24 @@ class SerieController extends AbstractController
     }
 
     #[Route('/serie/add', name: 'serie_add')]
-    public function add(EntityManagerInterface $em, Request $request): Response {
+    public function add(EntityManagerInterface $em, Request $request, TestChaine $test): Response {
         $serie = new Serie();
         $serie->setDateCreated(new \DateTime());
         $formbuilder = $this->createForm(SerieType::class, $serie);
         // hydrate l'instance avec les données du formulaire
         $formbuilder->handleRequest($request);
+
         if($formbuilder->isSubmitted() && $formbuilder->isValid()) {
+            $motsTabou = $test->VerifMotClef($serie->getOverview());
+            dump($motsTabou);
+            if($motsTabou) {
+                unset($motsTabou[0]);
+                $this->addFlash('error', 'Le mot tabou '.
+                    implode(', ', $motsTabou).
+                    ' a été utilisé dans l\'overview');
+                $serieform = $formbuilder->createView();
+                return $this->render('serie/add.html.twig', ['serieform'=>$serieform]);
+            }
             $em->persist($serie);
             $em->flush();
             // ajout d'un message flash
